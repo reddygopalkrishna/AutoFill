@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Profile · Paste Autofill</title>
+    <link rel="icon" href="icons/paste-32.png" type="image/png">
+    <link rel="stylesheet" href="profile.css">
+    <script src="matching.js" defer></script>
+    <script src="profile.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <div class="brand"><img src="icons/paste-48.png" alt="" width="28" height="28"> Paste Autofill</div>
+        <h1>Your profile</h1>
+        <p>Save the details you reuse, then click or press Tab into a matching application field. Leave any details you don’t use blank.</p>
+      </header>
+
+      <form id="profile-form">
+        <fieldset disabled id="profile-fields" class="profile-fields">
+          <legend class="visually-hidden">Saved profile details</legend>
+          <section aria-labelledby="identity-heading">
+            <h2 id="identity-heading">Name and contact</h2>
+            <div class="fields">
+              <label>First name <input name="firstName" autocomplete="given-name"></label>
+              <label>Last name <input name="lastName" autocomplete="family-name"></label>
+              <label>Middle name <input name="middleName" autocomplete="additional-name"></label>
+              <label>Full name override <input name="fullName" autocomplete="name" placeholder="Uses your name fields if blank"></label>
+              <label>Email <input name="email" type="email" autocomplete="email"></label>
+              <label>Phone <input name="phone" type="tel" autocomplete="tel"></label>
+              <label>Date of birth <input name="birthDate" type="date" autocomplete="bday" aria-describedby="birth-help"></label>
+            </div>
+            <p class="hint" id="birth-help">Paste asks before filling your date of birth on a website.</p>
+          </section>
+
+          <section aria-labelledby="address-heading">
+            <h2 id="address-heading">Address</h2>
+            <div class="fields">
+              <label>Address line 1 <input name="address1" autocomplete="address-line1"></label>
+              <label>Address line 2 <input name="address2" autocomplete="address-line2"></label>
+              <label>City <input name="city" autocomplete="address-level2"></label>
+              <label>State or region <input name="region" autocomplete="address-level1"></label>
+              <label>Postal code <input name="postalCode" autocomplete="postal-code"></label>
+              <label>Country <input name="country" autocomplete="country-name"></label>
+            </div>
+          </section>
+
+          <section aria-labelledby="work-heading">
+            <h2 id="work-heading">Work</h2>
+            <div class="fields">
+              <label>Role or designation <input name="role" autocomplete="organization-title"></label>
+              <label>Current company <input name="company" autocomplete="organization"></label>
+              <label>Years of experience <input name="experience" type="number" min="0" step="any" inputmode="decimal"></label>
+              <label class="wide-field">Skills <textarea name="skills" rows="2" placeholder="Python, project management, public speaking"></textarea></label>
+            </div>
+          </section>
+
+          <section aria-labelledby="links-heading">
+            <h2 id="links-heading">Links</h2>
+            <div class="fields link-fields">
+              <label>GitHub <input name="github" inputmode="url" spellcheck="false" placeholder="github.com/you" data-link></label>
+              <label>LinkedIn <input name="linkedin" inputmode="url" spellcheck="false" placeholder="linkedin.com/in/you" data-link></label>
+              <label>Portfolio <input name="portfolio" inputmode="url" spellcheck="false" placeholder="your-site.com" data-link></label>
+            </div>
+          </section>
+
+          <section id="custom-details" aria-labelledby="custom-heading">
+            <div class="section-heading">
+              <h2 id="custom-heading">Custom details</h2>
+              <div class="section-actions">
+                <button type="button" id="add-field" class="secondary">Add field</button>
+                <button type="button" id="add-section" class="secondary">Add section</button>
+              </div>
+            </div>
+            <p class="hint">Use the label shown on an application form, such as University or T-shirt size.</p>
+            <div id="custom-fields" class="custom-fields"></div>
+            <div id="custom-sections" class="custom-sections"></div>
+          </section>
+        </fieldset>
+
+        <footer>
+          <div>
+            <p>Saved in this Chrome profile.</p>
+            <p id="save-status" role="status" aria-live="polite"></p>
+          </div>
+          <button id="save-profile" type="submit" disabled>Save profile</button>
+        </footer>
+      </form>
+
+      <template id="field-template">
+        <div class="custom-field" role="group" aria-label="Custom field">
+          <label>Field label <input data-label autocomplete="off" placeholder="e.g. University"></label>
+          <label>Value <textarea data-value rows="1"></textarea></label>
+          <button type="button" data-remove class="secondary remove">Remove field</button>
+        </div>
+      </template>
+
+      <template id="section-template">
+        <fieldset class="custom-section">
+          <legend>Custom section</legend>
+          <div class="custom-section-header">
+            <label>Section name <input data-title autocomplete="off" placeholder="e.g. Education"></label>
+            <button type="button" data-remove-section class="secondary remove">Remove section</button>
+          </div>
+          <div class="custom-fields" data-fields></div>
+          <button type="button" data-add-field class="secondary">Add field</button>
+        </fieldset>
+      </template>
+    </main>
+  </body>
+</html>
