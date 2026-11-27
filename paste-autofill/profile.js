@@ -9,7 +9,7 @@ const addFieldButton = document.querySelector("#add-field");
 const addSectionButton = document.querySelector("#add-section");
 const fieldTemplate = document.querySelector("#field-template");
 const sectionTemplate = document.querySelector("#section-template");
-const { normalizeCustomLabel } = PasteMatching;
+const { normalizeCustomLabel } = AutoFullMatching;
 let customError;
 
 function showStatus(message, error = false) {

@@ -1,4 +1,4 @@
-const PasteMatching = (() => {
+const AutoFullMatching = (() => {
   const inputTypes = new Set(["text", "email", "tel", "url", "number", "date"]);
   const links = { github: "GitHub", linkedin: "LinkedIn", portfolio: "Portfolio" };
   const linkPhrases = { github: /\bgit ?hub\b/, linkedin: /\blinked ?in\b/, portfolio: /\bportfolio\b/ };

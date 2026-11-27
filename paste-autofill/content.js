@@ -1,5 +1,5 @@
 (() => {
-  const { links, fieldHints, fieldKey, isEmptyControl, savedValue, optionValue, needsBirthConfirmation, customValues } = PasteMatching;
+  const { links, fieldHints, fieldKey, isEmptyControl, savedValue, optionValue, needsBirthConfirmation, customValues } = AutoFullMatching;
   const setters = [HTMLInputElement, HTMLTextAreaElement, HTMLSelectElement].map((type) => [
     type, Object.getOwnPropertyDescriptor(type.prototype, "value").set,
   ]);
@@ -68,7 +68,7 @@
     const dialog = document.createElement("dialog");
     const heading = document.createElement("h2");
     const actions = document.createElement("div");
-    heading.id = "paste-dialog-title";
+    heading.id = "auto-full-dialog-title";
     heading.textContent = title;
     dialog.setAttribute("aria-labelledby", heading.id);
     actions.className = "actions";
